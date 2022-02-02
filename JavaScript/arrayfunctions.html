@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX</title>
+</head>
+<body>
+    <!-- <h1>News</h1>     -->
+    <div id="news"></div>
+    <!--seperation of concerns -->
+    <!-- <script src="script.js"></script> -->
+    <!-- <link rel="stylesheet" href="styles.css"/> -->
+    <!-- control + /
+    cmd + / -->
+    <script>
+        // js concepts
+        // take data from API or json
+        let clients = [
+            {name:"Ramesh", email:"ramesh@demo.com", mobile:"9989123456", city:"kkd", doj:"01-01-2000", age:35},
+            {name:"Likhitha", email:"likhitha@demo.com", mobile:"9989789012", city:"hyd", doj:"01-01-2010", age:10},
+            {name:"prakash", email:"prakash@demo.com", mobile:"9989456789", city:"rjy", doj:"01-01-2020", age:25},
+            {name:"prasad", email:"prasad@demo.com", mobile:"9989789456", city:"hyd", doj:"01-01-2005", age:30},
+
+        ];
+
+        //forEach - iterate over array elements
+        // for(let i=0;i<clients.length;i++){
+        //     console.log(clients[i]);
+        // }
+
+        // clients.forEach(function(client){
+        //     console.log(client);
+        // })
+
+        //ES6
+        clients.forEach(
+            (client) => console.log(`${client.name} is ${client.age} years old`)
+            );
+
+        //filter
+        // for(let i=0;i<clients.length;i++){
+        //     if(clients[i].age<30)
+        //     {
+        //         console.log(clients[i])
+        //     }
+        // }
+        //client
+        // let filteredclients = clients.filter(function(client){
+        //     // if(client.age<30) return true;
+        //     if(client.age>20) return true;
+        // });
+        
+        //ES6
+        let filteredclients = clients.filter(client => client.age<30)
+        console.log(filteredclients);
+        
+        //map
+        clients.map((client) => client.name += ".")
+
+        console.log(clients)
+
+        //sort
+        let sortedClients = clients.sort((a,b)=> b.age - a.age)
+
+        console.log(sortedClients);
+
+        //reduce
+        // let totalAge = clients.reduce(function(total,client){
+        //     return total + client.age;
+        // },0);
+        
+        let totalAge = clients.reduce((total,client) => total + client.age,0);
+        console.log(`Total Age : ${totalAge}`);
+    </script>
+</body>
+</html>
