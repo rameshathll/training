@@ -4,12 +4,57 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AJAX</title>
+    <title>Demo</title>
+    <link rel="icon" href="../favicon.gif">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-    <h1>News</h1>    
-    <div id="news"></div>
-    <script src="script.js"></script>
-    <link rel="stylesheet" href="styles.css"/>
+    <img id="ship1" class="ship" src="../img/ship.gif"/>
+    <img id="ship2" class="ship" src="../img/ship.gif"/>
+    <style>
+        body{
+            background-image: url('../img/stars.png');
+        }
+        .ship{
+            position:absolute;
+            left:10; top:10;  
+            transition: left 1s;          
+        }
+        #ship1{
+            filter:hue-rotate(30deg);
+        }
+    </style>
+    <script>
+        let timer1 = null, timer2=null;
+        let moveship = (ship,timer) => {
+            let x = parseInt(ship.offset().left);
+            console.log(x)
+            let distance = Math.floor(Math.random()*100)
+            x += distance;
+            if(x<=1500)
+                ship.css({left:x})
+            else            
+                clearInterval(timer);
+            
+        }
+        $(document).ready(() => {
+            console.log('Page is ready');
+            let ship1 = $("#ship1");
+            let ship2 = $("#ship2");
+            ship1.css({top:10, left:0});
+            ship2.css({top:100, left:0});
+            
+            timer1 = setInterval(() => {
+                moveship(ship1,timer1);                
+            },1000); //ms
+
+            timer2 = setInterval(() => {
+                moveship(ship2,timer2);
+            },100);
+                
+            // clearInterval(timer1);
+            // clearInterval(timer2);
+        })
+    </script>
 </body>
 </html>
