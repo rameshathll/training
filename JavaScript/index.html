@@ -25,16 +25,19 @@
         }
     </style>
     <script>
-        let timer1 = null, timer2=null;
-        let moveship = (ship,timer) => {
-            let x = parseInt(ship.offset().left);
-            console.log(x)
-            let distance = Math.floor(Math.random()*100)
+        let timer=null, pagewidth=$(document).width();
+        let moveship = (ship) => {
+            let x = parseInt(ship.offset().left);            
+            let distance = 10 + Math.floor(Math.random()*100)
             x += distance;
-            if(x<=1500)
+            if(x<=(pagewidth-140))
                 ship.css({left:x})
             else            
+            {                
                 clearInterval(timer);
+                let shipid = ship.attr('id');
+                alert(shipid+" won the race");
+            }
             
         }
         $(document).ready(() => {
@@ -44,16 +47,13 @@
             ship1.css({top:10, left:0});
             ship2.css({top:100, left:0});
             
-            timer1 = setInterval(() => {
-                moveship(ship1,timer1);                
+            timer = setInterval(() => {
+                moveship(ship1); 
+                moveship(ship2);               
             },1000); //ms
 
-            timer2 = setInterval(() => {
-                moveship(ship2,timer2);
-            },100);
-                
-            // clearInterval(timer1);
-            // clearInterval(timer2);
+                           
+           
         })
     </script>
 </body>
