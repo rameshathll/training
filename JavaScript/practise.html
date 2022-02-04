@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Concepts</title>
+</head>
+<body>
+    <script>
+        //generators
+        function* generateRandomNumbers(){
+            while(true){
+                let number = Math.floor(Math.random()*100);
+                if(number<10) return number;
+                yield number;
+            }
+        }
+
+        let randomnumber = generateRandomNumbers().next();
+        do
+        {
+            randomnumber = generateRandomNumbers().next()
+            console.log(randomnumber);
+        }while(randomnumber.done==false)
+
+        //promise
+        let p = new Promise((resolve, reject) =>{
+            //any task
+            //
+            let success = false;
+            if(success){
+                resolve("success");
+            }
+            else
+            {
+                reject("failed");
+            }
+        });
+
+        p.then((msg)=>console.log(msg))
+        .catch((msg)=>console.log(msg));
+
+        fetch('https://animechan.vercel.app/api/random')
+        .then(res=>res.json())
+        .then(res=>console.log(res))
+        .catch(err => console.log(err));
+    </script>    
+</body>
+</html>
