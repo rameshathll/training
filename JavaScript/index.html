@@ -7,11 +7,17 @@
     <title>Demo</title>
     <link rel="icon" href="../favicon.gif">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function sayHello() {
+                console.log("Hello")
+            }
+    </script>
 </head>
 <body>
     <!-- <img id="ship1" class="ship" src="../img/ship.gif"/>
     <img id="ship2" class="ship" src="../img/ship.gif"/> -->
-    
+    <img id="myship" src="../img/myship.gif"/>
+    <button onclick="sayHello()">Hello</button>
     <style>
         body{
             background-image: url('../img/stars.png');
@@ -21,12 +27,21 @@
             left:10; top:10;  
             transition: left 1s;          
         }
+        #myship{
+            position: absolute;
+            max-width: 100px;
+        }
         #ship1{
             filter:hue-rotate(30deg);
         }
     </style>
     <script>
-        //event listeners
+        //events 
+        
+        $(document).mousemove((e)=>{
+            $("#myship").css({left:e.clientX,top:e.clientY});
+        });
+        
         
         let timer=null, pagewidth=$(document).width();
 
